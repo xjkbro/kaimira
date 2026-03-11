@@ -53,6 +53,31 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
+
+  // Get config handler
+  ipcMain.handle('get-config', async () => {
+    const configPath = join(app.getPath('userData'), 'config.json')
+    console.log("Config Path:", configPath)
+    const fs = require('fs')
+    try {
+      const configData = await fs.promises.readFile(configPath, 'utf-8')
+      const config = JSON.parse(configData)
+      console.log("Config Data:", config)
+      return config
+    } catch (error) {
+      console.error("Failed to read config:", error)
+      return { windows: [] } // Return default config if reading fails
+    }
+  })
+  // Listen for config updates from renderer
+  ipcMain.handle('update-config', async (event, newWindowsConfig) => {
+    console.log("Received new config from renderer:", JSON.stringify(newWindowsConfig, null, 2))
+    const configPath = join(app.getPath('userData'), 'config.json')
+    console.log(configPath)
+    const fs = require('fs')
+    await fs.writeFileSync(configPath, JSON.stringify(newWindowsConfig , null, 2))
+  })
+
   // Screenshot handler
   ipcMain.handle('take-screenshot', async () => {
     console.log('Taking screenshot...')

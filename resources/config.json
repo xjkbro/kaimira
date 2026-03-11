@@ -1,0 +1,7 @@
+{
+    "windows": [
+      { "id": 1, "x": 50, "y": 50, "w": 300, "h": 200, "title": "Browser", "z": 1 },
+      { "id": 2, "x": 400, "y": 150, "w": 350, "h": 250, "title": "Notes", "componentType": "Notes", "z": 2 },
+      { "id": 3, "x": 500, "y": 50, "w": 250, "h": 150, "title": "Clock", "componentType": "Clock", "z": 3 }
+    ]
+}
