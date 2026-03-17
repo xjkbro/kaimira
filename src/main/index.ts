@@ -94,6 +94,14 @@ app.whenReady().then(() => {
     })
   })
 
+  ipcMain.handle('toggle-full-screen', async (event) => {
+    const window = BrowserWindow.getFocusedWindow()
+    if (window) {
+      const isFullScreen = window.isFullScreen()
+      window.setFullScreen(!isFullScreen)
+    }
+  })
+
   ipcMain.handle('run-system-command', async (event, action) => {
     const options = {
       name: 'My Govee Desktop App'

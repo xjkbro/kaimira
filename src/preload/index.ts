@@ -20,6 +20,7 @@ const api = {
     const newDataConfig = { ...dataConfig, windows: newWindowsConfig }
     ipcRenderer.invoke('update-config', newDataConfig) // Optionally send to main process
   },
+  toggleFullScreen: () => ipcRenderer.invoke('toggle-full-screen'),
   takeScreenshot: () => ipcRenderer.invoke('take-screenshot'),
   sendPing: () => ipcRenderer.send('ping')
 }

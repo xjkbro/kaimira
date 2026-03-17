@@ -4,6 +4,7 @@ declare global {
   interface Window {
     electron: ElectronAPI
     api: {
+      toggleFullScreen(): void
       config: any
       updateWindowsConfig: any,
       takeScreenshot: () => Promise<string>

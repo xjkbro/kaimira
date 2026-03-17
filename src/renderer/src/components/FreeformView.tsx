@@ -1,18 +1,21 @@
 import useDarkMode from "@renderer/lib/hooks";
 import Clock from "./Clock";
 import Notes from "./Notes";
+import Pomodoro from "./Pomodoro";
 import React, { useEffect, useRef, useState } from "react";
 import { Rnd } from "react-rnd";
 import { cn } from "@renderer/lib/utils";
 import { useConfigStore } from "@renderer/lib/store";
 
 
-export const FreeformView = ({ locked, setLocked }) => {
+export const FreeformView = () => {
+  const { locked, setLocked } = useConfigStore();
 
   // Component registry to avoid recreating elements
   const componentRegistry = {
     Clock: Clock,
     Notes: Notes,
+    Pomodoro: Pomodoro,
     // Add more components here as needed
   };
   const [name, setName] = useState('Jason')
@@ -89,9 +92,10 @@ export const FreeformView = ({ locked, setLocked }) => {
                   title="Move"
                   onMouseDown={() => bringToFront(item.id)}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 dark:text-white/80" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M11 4h2v4.586l1.293-1.293 1.414 1.414L12 12.414l-3.707-3.707 1.414-1.414L11 8.586V4zM4 11v2h4.586l-1.293 1.293 1.414 1.414L12 11.586l-3.707-3.707-1.414 1.414L8.586 11H4zM13 20h-2v-4.586l-1.293 1.293-1.414-1.414L12 11.586l3.707 3.707-1.414 1.414L13 15.414V20zM20 13v-2h-4.586l1.293-1.293-1.414-1.414L11.586 12l3.707 3.707 1.414-1.414L15.414 13H20z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg"  className="w-4 h-4 dark:text-white/80" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
                   </svg>
+
                 </div>
 
               </div>
